@@ -1,0 +1,35 @@
+# BoT-SORT with ReID — solves the occlusion ID-swap problem.
+#
+# ByteTrack is IoU-only (Kalman + bbox overlap). When two people fully overlap,
+# IoU can't tell them apart → coin-flip ID swap. BoT-SORT adds an appearance
+# embedding model (ReID) that remembers what each person looks like, so after
+# they separate, the system matches by visual similarity, not just position.
+
+tracker_type: botsort
+
+# Detection thresholds — same philosophy as our ByteTrack config
+track_high_thresh: 0.45     # high-confidence detection threshold
+track_low_thresh: 0.1       # use low-conf detections to maintain tracks through partial occlusion
+new_track_thresh: 0.55      # threshold to start a new track (prevent ghost tracks)
+
+# How many frames to keep a "lost" track alive.
+# 150 frames ≈ 5 seconds at 30fps. Generous buffer for extended occlusions.
+track_buffer: 150
+
+# IoU matching threshold
+match_thresh: 0.82
+
+# Fuse detection confidence with motion cost
+fuse_score: true
+
+# ── BoT-SORT specific: camera motion compensation ──
+# sparseOptFlow handles subtle camera shake/vibration common in pole-mounted CCTV
+gmc_method: sparseOptFlow
+
+# ── ReID (Re-Identification) — this is what fixes occlusion ──
+# When two tracks overlap and separate, the ReID model compares their visual
+# appearance embeddings to reassign IDs correctly.
+with_reid: true             # ENABLE the appearance model
+proximity_thresh: 0.5       # min IoU overlap before ReID kicks in
+appearance_thresh: 0.25     # lower = more willing to match by appearance (0.25 is permissive)
+model: auto                 # use detector backbone features for ReID embeddings

@@ -1,0 +1,63 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+venv311/
+**/venv311/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# ANPR generated outputs
+output/
+outputs/
+results/
+runs/
+plate_output/
+yolo_output/
+predictions/
+detections/
+cropped_plates/
+plate_crops/
+processed_images/
+
+# Generated videos
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Testing / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/

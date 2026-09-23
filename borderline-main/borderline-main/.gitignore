@@ -1,0 +1,47 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# ── Virtual environments ──
+venv/
+env/
+.venv/
+busapp/
+
+# ── YOLO model weights (large binary, download at runtime) ──
+*.pt
+*.onnx
+*.engine
+*.torchscript
+
+# ── Test videos (too large for git) ──
+*.mp4
+*.avi
+*.mkv
+*.mov
+
+# ── Runtime artifacts ──
+ibvap_events.db
+alerts/
+runs/
+
+# ── IDE / Editor ──
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.agents/
+
+# ── OS junk ──
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ── Distribution / packaging ──
+dist/
+build/
+*.egg-info/
+*.egg

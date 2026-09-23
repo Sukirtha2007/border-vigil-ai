@@ -1,0 +1,22 @@
+# Custom ByteTrack configuration for border surveillance.
+# Tuned for persistent ID tracking through occlusions.
+
+tracker_type: bytetrack
+
+# Detection thresholds for track association
+track_high_thresh: 0.5    # high-confidence detection threshold
+track_low_thresh: 0.1     # low-confidence — ByteTrack's key insight: use low-conf
+                          # detections to maintain tracks through partial occlusion
+new_track_thresh: 0.6     # threshold to initialize a new track (higher = fewer ghosts)
+
+# How many frames to keep a "lost" track alive before deleting it.
+# Default is 30. We use 120 (~4 seconds at 30fps) so a person who walks
+# behind a pole or another person for a few seconds keeps their ID.
+track_buffer: 120
+
+# IoU matching threshold. Higher = stricter spatial matching.
+match_thresh: 0.85
+
+# Fuse detection confidence into the matching cost.
+# Helps prefer high-confidence detections during association.
+fuse_score: true
